@@ -1,6 +1,4 @@
 import React from 'react'
-import { useState } from 'react'
-import { useEffect } from 'react'
 import {useLoaderData} from 'react-router-dom'
 
 function Github() {
@@ -15,7 +13,7 @@ function Github() {
     // },[])
     const data = useLoaderData();
   return (
-    <div className='text-center m-4 bg-gray-400 text-white p-4 text-3xl'>Github repositiers: {data.public_repos}
+    <div className='text-center m-4 bg-gray-400 text-white p-4 text-3xl'>Github repositaries: {data.public_repos}
         <img src={data.avatar_url} alt="" width={100}/>
     </div>
   )
