@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 export default function Card() {
     const [data, setData] = useState([]);
     useEffect(() => {
-        fetch('https://api.github.com/users/aniket24g')
+        fetch('https://api.github.com/users/Omkar-R-Mundhe')
             .then(response => response.json())
             .then(response => {
                 setData(response);
@@ -22,7 +22,7 @@ export default function Card() {
                     </h5>
                 </a>
                 <div className="flex items-center mt-2.5 mb-5">
-                    <a href="https://twitter.com/aniket24g" target='_blank'>
+                    <a href={`https://twitter.com/${data.twitter_username}`} target='_blank'>
                     <svg className="w-4 h-4 mr-1 "
                         aria-hidden="true" 
                         xmlns="http://www.w3.org/2000/svg" 
@@ -51,7 +51,7 @@ export default function Card() {
                 <div className="flex items-center justify-between">
                     <span className="text-xl font-bold text-gray-900 dark:text-white">{data.followers}</span>
                     <a
-                        href="https://github.com/Aniket24G" target='_blank'
+                        href={`https://github.com/${data.login}`} target='_blank'
                         className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     >
                         Know More
