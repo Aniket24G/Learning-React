@@ -15,7 +15,7 @@ export default function Protected({ children, authentication = true }) {
         }
         setLoader(false);
     }, [authStatus, navigate, authentication])
-    if (loading) {
+    if (loader) {
         return (
             <div className="flex justify-center items-center h-screen">
                 <div className="relative inline-flex">
@@ -27,7 +27,9 @@ export default function Protected({ children, authentication = true }) {
         )
     } else {
         return (
+            <>
             { children }
+            </>
         )
     }
 }

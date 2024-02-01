@@ -9,14 +9,14 @@ function PostForm({ post }) {
     const { register, handleSubmit, watch, setValue, control, getValues } = useForm({
         defaultValues: {
             title: post?.title || '',
-            slug: psot?.slug || '',
+            slug: post?.slug || '',
             content: post?.content || '',
             status: post?.status || 'active'
         }
     })
 
     const navigate = useNavigate();
-    const userData = useSelector(state => state.user.userData)
+    const userData = useSelector(state => state.auth.userData)
 
     const submit = async (data) => {
         if (post) {
@@ -40,7 +40,7 @@ function PostForm({ post }) {
                 data.featuredImage = fileId
                 const dbPost = await appwriteService.createPost({
                     ...data,
-                    userId: userData.$id,
+                    userId: userData.$id
                 })
                 if (dbPost) {
                     navigate(`/post/${dbPost.$id}`)
@@ -54,7 +54,6 @@ function PostForm({ post }) {
             return value
                 .trim()
                 .toLowerCase()
-                .replace(/^[a-zA-Z\d]+/g, '-')
                 .replace(/\s/g, '-')
         }
         return ''
@@ -77,23 +76,24 @@ function PostForm({ post }) {
             <div className='w-2/3 px-2'>
                 <Input
                     label="Title: "
-                    placeholder="Title"
-                    className='mb-4'
+                    placeholder="title"
+                    className='mb-4 mx-2 rounded p-1'
                     {...register("title", { required: true })}
                 />
                 <Input
                     label="Slug: "
                     placeholder='slug'
-                    className='mb-4'
+                    className='mb-4 mx-2 rounded p-1'
                     {...register("slug", { required: true })}
                     onInput={(e) => {
                         setValue("slug", slugTransform(e.currentTarget.value), {
                             shouldValidate: true
                         });
                     }}
+                    readOnly={true}
                 />
                 <RTE
-                    label="Content: " name="content" control={control} defaultValue={getValues("content")}
+                    label="Content " name="content" control={control} defaultValue={getValues("content")}
                 />
             </div>
             <div className='w-1/3 px-2'>
